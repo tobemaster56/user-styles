@@ -1,0 +1,39 @@
+/* ==UserStyle==
+@name           推特互关检查小助手（清爽版）
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    检查你的X（推特）关注列表里，对方有没有回关你
+@author         https://x.com/jinglian
+
+==/UserStyle== */
+@-moz-document regexp("https://x.com/\\w[+]")
+{
+  /* Insert code here... */
+}
+
+/**
+    * 这条 css 的规则是：
+    * 在我的【正在关注】列表里，将未关注我的账号，用红色边框和背景标记出来，
+   */
+
+section[aria-labelledby^="accessible-list"] {
+  [data-testid="UserCell"]:not(:has([data-testid="userFollowIndicator"]))
+    > div {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.12) !important;
+  }
+
+  /**
+      * 这条 css 的规则是：
+      * 在我的【正在关注】列表里，隐藏互关的推友，只显示未关注我的
+      * 下一步行动：
+      * 1. 确实是想关注的，即便别人没有关注你，可以保留
+      * 2. 预期是想互关的，可能是你先关注了，别人没有回关你，或者就是骗关的（先互关了，后面又取关了），可以取关
+     */
+
+  [data-testid="UserCell"]:has([data-testid="userFollowIndicator"]) {
+    display: none;
+  }
+}

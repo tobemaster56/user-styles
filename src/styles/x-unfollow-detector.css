@@ -1,58 +1,41 @@
 /* ==UserStyle==
 @name           X-Unfollow-Detector
 @namespace      github.com/openstyles/stylus
-@version        1.0.4
+@version        1.0.3
 @description    检查你的X（推特）关注列表里，对方有没有回关你
 @author         https://x.com/tobemaster56
 ==/UserStyle== */
-@-moz-document regexp("https://x.com/\\w[+]") {
-    /* Insert code here... */
+
+@-moz-document regexp("https://x.com/\\w[+]")
+{
+  /* Insert code here... */
 }
 
-section[aria-labelledby^=accessible-list] {
-    [data-testid="UserCell"]:not(:has([data-testid="userFollowIndicator"])) > div {
-        padding: 8px;
-        border-radius: 12px;
-        border: 1px solid #ff4444 !important;
-        background-color: rgba(255, 68, 68, 0.12) !important;
-    }
+section[aria-labelledby^="accessible-list"] {
+  [data-testid="UserCell"]:not(:has([data-testid="userFollowIndicator"]))
+    > div {
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.12) !important;
+  }
 
-    [data-testid="userFollowIndicator"] {
-        background-color: rgba(0, 186, 124, 1) !important;
-        padding: 1px 6px !important;
-        border-radius: 4px !important;
-    }
-
-
-    /*
-    * 在我的正在关注列表里，隐藏互关的推友，剩下只显示未关注我的
-
-    */
-
-    [data-testid="UserCell"]:has([data-testid="userFollowIndicator"]) {
-        display: none;
-    }
-
-    /* 在我的关注者列表里只显示互关的 */
-
-    [data-testid="UserCell"]:has([data-testid*="-follow"]) {
-        display: none;
-    }
-
-    [data-testid="UserCell"]:has([data-testid*="-unfollow"]) {
-        border-bottom: 1px solid rgb(239, 243, 244);
-    }
-
-
-    [data-testid="userFollowIndicator"] > span {
-        display: inline-block;
-        color: white;
-        padding: 4px;
-    }
+  [data-testid="userFollowIndicator"] {
+    background-color: rgba(0, 186, 124, 1) !important;
+    padding: 1px 6px !important;
+    border-radius: 4px !important;
+  }
+  [data-testid="userFollowIndicator"] > span {
+    display: inline-block;
+    color: white;
+    padding: 4px;
+  }
 }
-
 
 /* 右侧除了搜索框，其余全隐藏 */
+
 div[aria-label="当前趋势"] > div > div:not(:first-child) {
-    display: none;
+  display: none;
 }
+
+/* 测试版本更新是否正常 test */
